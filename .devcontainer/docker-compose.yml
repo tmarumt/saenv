@@ -1,0 +1,27 @@
+services:
+  rstudio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/home/rstudio/${LOCAL_WORKSPACE_FOLDER_BASENAME}
+      - renv:/home/rstudio/.cache/R/renv
+      - pip:/home/rstudio/.pip
+      - julia:/home/rstudio/.julia
+      - TinyTeX:/home/rstudio/.TinyTeX
+      - fonts:/usr/share/fonts
+    environment:
+      - TZ=Asia/Tokyo
+      - DISABLE_AUTH=true
+      - PYTHONUSERBASE=/home/rstudio/.pip
+volumes:
+  renv:
+    external: true
+  pip:
+    external: true
+  julia:
+    external: true
+  TinyTeX:
+    external: true
+  fonts:
+    external: true
