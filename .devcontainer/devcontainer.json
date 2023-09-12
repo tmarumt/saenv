@@ -21,6 +21,5 @@
         }
     },
     "initializeCommand": "/bin/bash .devcontainer/create-volumes.sh; if [ ! -e .devcontainer/.env ]; then echo LOCAL_WORKSPACE_FOLDER_BASENAME=${localWorkspaceFolderBasename} > .devcontainer/.env; fi",
-    "postCreateCommand": "/bin/bash .devcontainer/install-packages.sh",
     "remoteUser": "rstudio"
 }

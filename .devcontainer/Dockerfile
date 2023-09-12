@@ -1,20 +1,17 @@
-FROM rocker/rstudio
+FROM rocker/tidyverse
+RUN /rocker_scripts/install_quarto.sh; \
+    /rocker_scripts/install_python.sh; \
+    /rocker_scripts/install_julia.sh
 
-RUN apt update && apt install -y \
-    openssh-client libxt-dev \
-    python3 python3-pip
-
-# Install Julia
-ENV JULIA_MINOR_VERSION=1.9
-ENV JULIA_PATCH_VERSION=2
-
-RUN wget https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_MINOR_VERSION}/julia-${JULIA_MINOR_VERSION}.${JULIA_PATCH_VERSION}-linux-x86_64.tar.gz && \
-    tar xvf julia-${JULIA_MINOR_VERSION}.${JULIA_PATCH_VERSION}-linux-x86_64.tar.gz && \
-    rm julia-${JULIA_MINOR_VERSION}.${JULIA_PATCH_VERSION}-linux-x86_64.tar.gz && \
-    ln -s $(pwd)/julia-$JULIA_MINOR_VERSION.$JULIA_PATCH_VERSION/bin/julia /usr/bin/julia
+ENV NCPUS -1
 
 # Create directories for cache of packages and set permissions
 RUN cd /home/rstudio && mkdir .pip .cache .cache/R .cache/R/renv .TinyTeX .julia && \
     chown rstudio:rstudio .pip .cache .cache/R .cache/R/renv .TinyTeX .julia
 
+RUN install2.r --error --skipinstalled -n $NCPUS renv languageserver; \
+    install2.r --error --skipinstalled -n $NCPUS tinytex && \
+    R -e 'tinytex::install_tinytex(dir = "/home/rstudio/.TinyTeX", force = TRUE)'
+
+RUN pip install dvc dvc-gdrive
 ENV PATH $PATH:~/.pip/bin
