@@ -3,6 +3,8 @@ RUN /rocker_scripts/install_quarto.sh; \
     /rocker_scripts/install_python.sh; \
     /rocker_scripts/install_julia.sh
 
+RUN sudo apt-get update && sudo apt-get install -y libxt-dev
+
 ENV NCPUS -1
 
 # Create directories for cache of packages and set permissions
