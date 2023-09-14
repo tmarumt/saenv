@@ -1,20 +1,23 @@
 FROM rocker/tidyverse
-RUN /rocker_scripts/install_quarto.sh && \
-    /rocker_scripts/install_python.sh && \
-    /rocker_scripts/install_julia.sh
 
-RUN sudo apt-get update && sudo apt-get install -y \
-    libxt-dev
+RUN /rocker_scripts/install_python.sh
+RUN /rocker_scripts/install_julia.sh
 
-# Create directories for cache of packages and set permissions
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libxt-dev \
+    xdg-utils
+
+# Create directories for cache of packages, set permissions and install packages
 RUN cd /home/rstudio && mkdir .pip .cache .cache/R .cache/R/renv .TinyTeX .julia && \
     chown rstudio:rstudio .pip .cache .cache/R .cache/R/renv .TinyTeX .julia
 
-ENV NCPUS -1
+RUN install2.r --error --skipinstalled -n -1 \
+    renv \
+    languageserver
+RUN R -e 'tinytex::install_tinytex(dir = "/home/rstudio/.TinyTeX", force = TRUE)'
 
-RUN install2.r --error --skipinstalled -n $NCPUS renv languageserver tinytex && \
-    R -e 'tinytex::install_tinytex(dir = "/home/rstudio/.TinyTeX", force = TRUE)'
-
-RUN pip install dvc dvc-gdrive
+RUN pip install \
+    dvc \
+    dvc-gdrive
 
 ENV PATH $PATH:~/.pip/bin

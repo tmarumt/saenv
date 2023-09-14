@@ -1,6 +1,8 @@
 {
     "name": "${localWorkspaceFolderBasename}",
-    "dockerComposeFile": ["docker-compose.yml"],
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
     "service": "rstudio",
     "workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}",
     "forwardPorts": [
@@ -17,7 +19,12 @@
                 "janisdd.vscode-edit-csv",
                 "quarto.quarto",
                 "james-yu.latex-workshop"
-            ]
+            ],
+            "settings": {
+                "r.libPaths": [
+                    "/usr/local/lib/R/site-library"
+                ]
+            }
         }
     },
     "initializeCommand": "/bin/bash .devcontainer/create-volumes.sh; if [ ! -e .devcontainer/.env ]; then echo LOCAL_WORKSPACE_FOLDER_BASENAME=${localWorkspaceFolderBasename} > .devcontainer/.env; fi",
