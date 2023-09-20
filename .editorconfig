@@ -9,7 +9,7 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{js,ts,tsx,json,y{a,}ml,html,cpp,hpp,r,R}]
+[*.{js,ts,tsx,json,y{a,}ml,html,cpp,hpp,r,R,sh}]
 indent_style = space
 indent_size = 2
 
@@ -17,7 +17,7 @@ indent_size = 2
 indent_style = space
 indent_size = 4
 
-[*.{md,{R,q}md,rst}]
+[*.{{R,q,}md,rst}]
 trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
