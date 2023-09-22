@@ -16,7 +16,6 @@
         "REditorSupport.r",
         "ms-python.python",
         "julialang.language-julia",
-        "sas.sas-lsp",
         "janisdd.vscode-edit-csv",
         "quarto.quarto",
         "james-yu.latex-workshop"
