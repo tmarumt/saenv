@@ -1,1 +1,1 @@
-# Analysis Environment Template
+# Statistical Analysis Environment Template
