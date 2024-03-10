@@ -19,4 +19,4 @@ RUN pip install \
     dvc \
     dvc-gdrive
 
-ENV PATH $PATH:~/.pip/bin
+ENV PATH=$PATH:~/.pip/bin
