@@ -12,7 +12,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "editorconfig.editorconfig",
         "REditorSupport.r",
         "ms-python.python",
         "julialang.language-julia",
