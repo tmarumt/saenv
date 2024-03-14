@@ -26,6 +26,6 @@
       }
     }
   },
-  "initializeCommand": "/bin/bash .devcontainer/create-volumes.sh; if [ ! -e .devcontainer/.env ]; then echo LOCAL_WORKSPACE_FOLDER_BASENAME=${localWorkspaceFolderBasename} > .devcontainer/.env; fi",
+  "initializeCommand": "/bin/bash .devcontainer/initialize.sh; if [ ! -e .devcontainer/.env ]; then echo LOCAL_WORKSPACE_FOLDER_BASENAME=${localWorkspaceFolderBasename} > .devcontainer/.env; fi",
   "remoteUser": "rstudio"
 }
