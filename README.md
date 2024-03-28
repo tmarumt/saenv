@@ -1,1 +1,1 @@
-# Statistical Analysis Environment Template
+# Integrated Statistical Analysis enVironment
