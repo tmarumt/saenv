@@ -13,10 +13,5 @@ RUN cd /home/rstudio && mkdir .pip .cache .cache/R .cache/R/renv .TinyTeX .julia
 RUN install2.r --error --skipinstalled -n -1 \
     renv \
     languageserver
-RUN R -e 'tinytex::install_tinytex(dir = "/home/rstudio/.TinyTeX", force = TRUE)'
 
-RUN pip install \
-    dvc \
-    dvc-gdrive
-
-ENV PATH=$PATH:~/.pip/bin
+ENV PATH=$PATH:/home/rstudio/.pip/bin
